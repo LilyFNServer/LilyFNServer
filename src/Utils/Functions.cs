@@ -31,9 +31,28 @@
                     string BuildID = req.Headers["user-agent"].ToString().Split("-")[3].Split(",")[0];
 
                     if (!Double.IsNaN(Convert.ToDouble(BuildID))) CL = BuildID;
+                    else
+                    {
+                        BuildID = req.Headers["user-agent"].ToString().Split("-")[3].Split(" ")[0];
+
+                        if (!Double.IsNaN(Convert.ToDouble(BuildID))) CL = BuildID;
+                    }
                 } catch (Exception ex)
                 {
+                    try
+                    {
+                        string BuildID = req.Headers["user-agent"].ToString().Split("-")[1].Split("+")[0];
 
+                        if (!Double.IsNaN(Convert.ToDouble(BuildID))) CL = BuildID;
+
+                    } catch (Exception e) {}
+                }
+
+                try
+                {
+                    string Build = req.Headers["user-agent"].ToString().Split("Release-")[1].Split("-")[0];
+                    
+                    if (Build.Split())
                 }
             }
 
